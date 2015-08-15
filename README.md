@@ -7,7 +7,7 @@
 [downloads-image]: https://img.shields.io/npm/dm/immediate-chunk-store.svg?style=flat
 [downloads-url]: https://npmjs.org/package/immediate-chunk-store
 
-Immediate put/get for any [abstract-chunk-store](https://github.com/mafintosh/abstract-chunk-store) compliant store
+Immediate put/get for [abstract-chunk-store](https://github.com/mafintosh/abstract-chunk-store) compliant stores
 
 Makes `store.put()` chunks immediately available for `store.get()`, even before the
 `store.put()` callback is called. Data is stored in memory until the `store.put()`
@@ -23,7 +23,7 @@ npm install immediate-chunk-store
 
 ``` js
 var ImmediateChunkStore = require('immediate-chunk-store')
-var FSChunkStore = require('fs-chunk-store')
+var FSChunkStore = require('fs-chunk-store') // any chunk store will work
 
 var store = new ImmediateChunkStore(new FSChunkStore(10))
 

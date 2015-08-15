@@ -1,6 +1,6 @@
 {
   "name": "immediate-chunk-store",
-  "description": "Immediate put/get for any abstract-chunk-store compliant store",
+  "description": "Immediate put/get for abstract-chunk-store compliant stores",
   "version": "1.0.4",
   "author": {
     "name": "Feross Aboukhadijeh",
