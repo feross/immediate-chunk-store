@@ -9,9 +9,9 @@
 
 Immediate put/get for any [abstract-chunk-store](https://github.com/mafintosh/abstract-chunk-store) compliant store
 
-Makes `store.put()` calls immediately available for `store.get()` calls, even before the
-`store.put()` callback is called, by storing the data in memory until the `store.put()`
-completes.
+Makes `store.put()` chunks immediately available for `store.get()`, even before the
+`store.put()` callback is called. Data is stored in memory until the `store.put()`
+is complete.
 
 ## Install
 
