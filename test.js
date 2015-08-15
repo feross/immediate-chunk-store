@@ -13,7 +13,6 @@ abstractTests(test, function (chunkLength) {
 })
 
 test('put then immediate get', function (t) {
-  t.plan(5)
   var store = new ImmediateChunkStore(new FSChunkStore(10))
 
   store.put(0, new Buffer('0123456789'), onPut)
@@ -22,6 +21,8 @@ test('put then immediate get', function (t) {
   store.get(0, function (err, data) {
     t.error(err)
     t.deepEqual(data, new Buffer('0123456789'))
+    didGet1 = true
+    maybeDone()
   })
 
   function onPut (err) {
@@ -31,6 +32,19 @@ test('put then immediate get', function (t) {
     store.get(0, function (err, data) {
       t.error(err)
       t.deepEqual(data, new Buffer('0123456789'))
+      didGet2 = true
+      maybeDone()
     })
+  }
+
+  var didGet1 = false
+  var didGet2 = false
+  function maybeDone () {
+    if (didGet1 && didGet2) {
+      store.destroy(function (err) {
+        t.error(err)
+        t.end()
+      })
+    }
   }
 })
