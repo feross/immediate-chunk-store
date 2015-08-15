@@ -4,7 +4,9 @@ function ImmediateStore (store) {
   if (!(this instanceof ImmediateStore)) return new ImmediateStore(store)
 
   this.store = store
-  if (!this.store) throw new Error('First argument must be a chunk length')
+  if (!this.store || !this.store.get || !this.store.put) {
+    throw new Error('First argument must be abstract-chunk-store compliant')
+  }
 
   this.mem = []
   this.closed = false
