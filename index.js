@@ -9,11 +9,9 @@ function ImmediateStore (store) {
   }
 
   this.mem = []
-  this.closed = false
 }
 
 ImmediateStore.prototype.put = function (index, buf, cb) {
-  if (this.closed) return nextTick(cb, new Error('Storage is closed'))
   var self = this
   self.mem[index] = buf
   self.store.put(index, buf, function (err) {
@@ -24,7 +22,6 @@ ImmediateStore.prototype.put = function (index, buf, cb) {
 
 ImmediateStore.prototype.get = function (index, opts, cb) {
   if (typeof opts === 'function') return this.get(index, null, opts)
-  if (this.closed) return nextTick(cb, new Error('Storage is closed'))
 
   var start = (opts && opts.offset) || 0
   var end = opts && opts.length && (start + opts.length)
@@ -36,14 +33,10 @@ ImmediateStore.prototype.get = function (index, opts, cb) {
 }
 
 ImmediateStore.prototype.close = function (cb) {
-  if (this.closed) return nextTick(cb, new Error('Storage is closed'))
-  this.closed = true
   this.store.close(cb)
 }
 
 ImmediateStore.prototype.destroy = function (cb) {
-  if (this.closed) return nextTick(cb, new Error('Storage is closed'))
-  this.closed = true
   this.store.destroy(cb)
 }
 
