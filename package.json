@@ -32,7 +32,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/immediate-chunk-store/torrent-piece.git"
+    "url": "git://github.com/feross/immediate-chunk-store.git"
   },
   "scripts": {
     "test": "standard && node test"
