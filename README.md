@@ -1,10 +1,10 @@
 # immediate-chunk-store [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url]
 
-[travis-image]: https://img.shields.io/travis/feross/immediate-chunk-store.svg?style=flat
+[travis-image]: https://img.shields.io/travis/feross/immediate-chunk-store/master.svg
 [travis-url]: https://travis-ci.org/feross/immediate-chunk-store
-[npm-image]: https://img.shields.io/npm/v/immediate-chunk-store.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/immediate-chunk-store.svg
 [npm-url]: https://npmjs.org/package/immediate-chunk-store
-[downloads-image]: https://img.shields.io/npm/dm/immediate-chunk-store.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/immediate-chunk-store.svg
 [downloads-url]: https://npmjs.org/package/immediate-chunk-store
 
 #### Immediate put/get for [abstract-chunk-store](https://github.com/mafintosh/abstract-chunk-store) compliant stores
