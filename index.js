@@ -4,6 +4,8 @@ function ImmediateStore (store) {
   if (!(this instanceof ImmediateStore)) return new ImmediateStore(store)
 
   this.store = store
+  this.chunkLength = store.chunkLength
+
   if (!this.store || !this.store.get || !this.store.put) {
     throw new Error('First argument must be abstract-chunk-store compliant')
   }
