@@ -9,6 +9,8 @@
 
 #### Immediate put/get for [abstract-chunk-store](https://github.com/mafintosh/abstract-chunk-store) compliant stores
 
+[![abstract chunk store](https://cdn.rawgit.com/mafintosh/abstract-chunk-store/master/badge.svg)](https://github.com/mafintosh/abstract-chunk-store)
+
 Makes `store.put()` chunks immediately available for `store.get()`, even before the
 `store.put()` callback is called. Data is stored in memory until the `store.put()`
 is complete.
