@@ -29,7 +29,7 @@ var FSChunkStore = require('fs-chunk-store') // any chunk store will work
 
 var store = new ImmediateChunkStore(new FSChunkStore(10))
 
-store.put(0, new Buffer('abc'), function () { /* yolo */ })
+store.put(0, Buffer.from('abc'), function () { /* yolo */ })
 
 // And now, get the same chunk out BEFORE the put is complete
 store.get(0, function (err, data) {
