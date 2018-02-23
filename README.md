@@ -1,5 +1,7 @@
 # immediate-chunk-store [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/feross/immediate-chunk-store.svg)](https://greenkeeper.io/)
+
 [travis-image]: https://img.shields.io/travis/feross/immediate-chunk-store/master.svg
 [travis-url]: https://travis-ci.org/feross/immediate-chunk-store
 [npm-image]: https://img.shields.io/npm/v/immediate-chunk-store.svg
