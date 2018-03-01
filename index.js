@@ -4,6 +4,7 @@ function ImmediateStore (store) {
   if (!(this instanceof ImmediateStore)) return new ImmediateStore(store)
 
   this.store = store
+  this.pending = 0
   this.chunkLength = store.chunkLength
 
   if (!this.store || !this.store.get || !this.store.put) {
@@ -16,7 +17,9 @@ function ImmediateStore (store) {
 ImmediateStore.prototype.put = function (index, buf, cb) {
   var self = this
   self.mem[index] = buf
+  self.pending++
   self.store.put(index, buf, function (err) {
+    self.pending--
     self.mem[index] = null
     if (cb) cb(err)
   })
