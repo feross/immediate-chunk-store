@@ -21,6 +21,8 @@ test('put then immediate get', function (t) {
   store.get(0, function (err, data) {
     t.error(err)
     t.deepEqual(data, Buffer.from('0123456789'))
+    // May throw error on fast stores like MemoryChunkStore.
+    t.equal(store.pending, 1)
     didGet1 = true
     maybeDone()
   })
@@ -32,6 +34,7 @@ test('put then immediate get', function (t) {
     store.get(0, function (err, data) {
       t.error(err)
       t.deepEqual(data, Buffer.from('0123456789'))
+      t.equal(store.pending, 0)
       didGet2 = true
       maybeDone()
     })
