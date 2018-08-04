@@ -4,11 +4,11 @@ const FSChunkStore = require('fs-chunk-store')
 const MemoryChunkStore = require('memory-chunk-store')
 const test = require('tape')
 
-abstractTests(test, chunkLength => {
+abstractTests(test, function (chunkLength) {
   return new ImmediateChunkStore(new MemoryChunkStore(chunkLength))
 })
 
-abstractTests(test, chunkLength => {
+abstractTests(test, function (chunkLength) {
   return new ImmediateChunkStore(new FSChunkStore(chunkLength))
 })
 
