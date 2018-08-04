@@ -1,4 +1,4 @@
-module.exports = class {
+class ImmediateStore {
   constructor (store) {
     this.store = store
     this.chunkLength = store.chunkLength
@@ -9,6 +9,7 @@ module.exports = class {
 
     this.mem = []
   }
+
   put (index, buf, cb) {
     this.mem[index] = buf
     this.store.put(index, buf, err => {
@@ -16,6 +17,7 @@ module.exports = class {
       if (cb) cb(err)
     })
   }
+
   get (index, opts, cb) {
     if (typeof opts === 'function') return this.get(index, null, opts)
 
@@ -27,9 +29,11 @@ module.exports = class {
 
     this.store.get(index, opts, cb)
   }
+
   close (cb) {
     this.store.close(cb)
   }
+
   destroy (cb) {
     this.store.destroy(cb)
   }
@@ -40,3 +44,5 @@ function nextTick (cb, err, val) {
     if (cb) cb(err, val)
   })
 }
+
+module.exports = ImmediateStore
