@@ -1,5 +1,5 @@
 const abstractTests = require('abstract-chunk-store/tests')
-const ImmediateChunkStore = require('./')
+const ImmediateChunkStore = require('../')
 const FSChunkStore = require('fs-chunk-store')
 const MemoryChunkStore = require('memory-chunk-store')
 const test = require('tape')
