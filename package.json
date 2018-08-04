@@ -35,6 +35,6 @@
     "url": "git://github.com/feross/immediate-chunk-store.git"
   },
   "scripts": {
-    "test": "standard && node test"
+    "test": "standard && tape test/*.js"
   }
 }
