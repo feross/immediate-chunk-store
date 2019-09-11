@@ -1,3 +1,6 @@
+// TODO: remove when window.queueMicrotask() is well supported
+const queueMicrotask = require('queue-microtask')
+
 class ImmediateStore {
   constructor (store) {
     this.store = store
@@ -25,9 +28,14 @@ class ImmediateStore {
     const end = opts && opts.length && (start + opts.length)
 
     const buf = this.mem[index]
-    if (buf) return nextTick(cb, null, opts ? buf.slice(start, end) : buf)
 
-    this.store.get(index, opts, cb)
+    // if the chunk is in the temporary memory cache
+    if (buf) {
+      // queueMicrotask to ensure the function is async
+      queueMicrotask(() => cb(null, opts ? buf.slice(start, end) : buf))
+    } else {
+      this.store.get(index, opts, cb)
+    }
   }
 
   close (cb) {
@@ -37,12 +45,6 @@ class ImmediateStore {
   destroy (cb) {
     this.store.destroy(cb)
   }
-}
-
-function nextTick (cb, err, val) {
-  process.nextTick(() => {
-    if (cb) cb(err, val)
-  })
 }
 
 module.exports = ImmediateStore
