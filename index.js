@@ -23,22 +23,23 @@ class ImmediateStore {
 
   get (index, opts, cb) {
     if (typeof opts === 'function') return this.get(index, null, opts)
-    if (!opts) opts = {}
 
-    const memoryBuffer = this.mem[index]
+    let memoryBuffer = this.mem[index]
 
     // if the chunk isn't in the immediate memory cache
     if (!memoryBuffer) {
       return this.store.get(index, opts, cb)
     }
 
-    const start = opts.offset || 0
-    const end = opts.length ? (start + opts.length) : memoryBuffer.length
+    if (opts) {
+      const start = opts.offset || 0
+      const end = opts.length ? (start + opts.length) : memoryBuffer.length
 
-    const slicedBuffer = memoryBuffer.slice(start, end)
+      memoryBuffer = memoryBuffer.slice(start, end)
+    }
 
     // queueMicrotask to ensure the function is async
-    queueMicrotask(() => cb(null, slicedBuffer))
+    queueMicrotask(() => cb(null, memoryBuffer))
   }
 
   close (cb) {
