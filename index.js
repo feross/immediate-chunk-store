@@ -39,7 +39,9 @@ class ImmediateStore {
     }
 
     // queueMicrotask to ensure the function is async
-    queueMicrotask(() => cb(null, memoryBuffer))
+    queueMicrotask(() => {
+      if (cb) cb(null, memoryBuffer)
+    })
   }
 
   close (cb) {
