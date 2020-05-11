@@ -17,7 +17,7 @@
     "abstract-chunk-store": "^1.0.0",
     "fs-chunk-store": "^2.0.0",
     "memory-chunk-store": "^1.1.1",
-    "standard": "*",
+    "standard": ">=14.3.4",
     "tape": "^4.1.0"
   },
   "homepage": "https://github.com/feross/immediate-chunk-store",
