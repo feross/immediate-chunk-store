@@ -14,42 +14,43 @@ class ImmediateStore {
     this.mem = []
   }
 
-  put (index, buf, cb) {
+  put (index, buf, cb = () => {}) {
     this.mem[index] = buf
     this.store.put(index, buf, err => {
       this.mem[index] = null
-      if (cb) cb(err)
+      cb(err)
     })
   }
 
-  get (index, opts, cb) {
+  get (index, opts, cb = () => {}) {
     if (typeof opts === 'function') return this.get(index, null, opts)
 
-    let memoryBuffer = this.mem[index]
+    const buf = this.mem[index]
 
     // if the chunk isn't in the immediate memory cache
-    if (!memoryBuffer) {
+    if (!buf) {
       return this.store.get(index, opts, cb)
     }
 
-    if (opts) {
-      const start = opts.offset || 0
-      const end = opts.length ? (start + opts.length) : memoryBuffer.length
-
-      memoryBuffer = memoryBuffer.slice(start, end)
+    if (!opts) {
+      return queueMicrotask(() => cb(null, buf))
     }
 
-    // queueMicrotask to ensure the function is async
-    queueMicrotask(() => {
-      if (cb) cb(null, memoryBuffer)
-    })
+    const offset = opts.offset || 0
+    const len = opts.length || (buf.length - offset)
+
+    if (offset === 0 && len === buf.length) {
+      queueMicrotask(() => cb(null, buf))
+    } else {
+      queueMicrotask(() => cb(null, buf.slice(offset, len + offset)))
+    }
   }
 
-  close (cb) {
+  close (cb = () => {}) {
     this.store.close(cb)
   }
 
-  destroy (cb) {
+  destroy (cb = () => {}) {
     this.store.destroy(cb)
   }
 }
