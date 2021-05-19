@@ -25,25 +25,22 @@ class ImmediateStore {
   get (index, opts, cb = () => {}) {
     if (typeof opts === 'function') return this.get(index, null, opts)
 
-    const buf = this.mem[index]
+    let buf = this.mem[index]
 
     // if the chunk isn't in the immediate memory cache
     if (!buf) {
       return this.store.get(index, opts, cb)
     }
 
-    if (!opts) {
-      return queueMicrotask(() => cb(null, buf))
-    }
+    if (!opts) opts = {}
 
     const offset = opts.offset || 0
     const len = opts.length || (buf.length - offset)
 
-    if (offset === 0 && len === buf.length) {
-      queueMicrotask(() => cb(null, buf))
-    } else {
-      queueMicrotask(() => cb(null, buf.slice(offset, len + offset)))
+    if (offset !== 0 || len !== buf.length) {
+      buf = buf.slice(offset, len + offset)
     }
+    queueMicrotask(() => cb(null, buf))
   }
 
   close (cb = () => {}) {
