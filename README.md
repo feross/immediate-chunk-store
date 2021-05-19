@@ -1,7 +1,7 @@
-# immediate-chunk-store [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]
+# immediate-chunk-store [![ci][ci-image]][ci-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]
 
-[travis-image]: https://img.shields.io/travis/feross/immediate-chunk-store/master.svg
-[travis-url]: https://travis-ci.org/feross/immediate-chunk-store
+[ci-image]: https://img.shields.io/github/workflow/status/feross/immediate-chunk-store/ci/master
+[ci-url]: https://github.com/feross/immediate-chunk-store/actions
 [npm-image]: https://img.shields.io/npm/v/immediate-chunk-store.svg
 [npm-url]: https://npmjs.org/package/immediate-chunk-store
 [downloads-image]: https://img.shields.io/npm/dm/immediate-chunk-store.svg
